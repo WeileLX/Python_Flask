@@ -3,21 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.4.1-dist/css/bootstrap.css">
+    <style>
+        .login-box{
+            margin-top: 100px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 450px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-top: 1px;
+        }
+        .login-box h2{
+            text-align: left;
+        }
+
+    </style>
 </head>
 <body>
-<h1>用户登陆</h1>
-<form method="post" action="/login">   <!-- 如果没有action，则提交到当前地址   -->
-<select name ="role">
-    <option value="1"> 客户</option>
-    <option value="2"> 管理员</option>
-</select>
-    <input type="text" name="mobile" placeholder="手机号"/>
-    <input type="password" name="pwd" placeholder="密码"/>
-    <input type="submit" value="Submit"/>
+
+<div class="login-box">
+    <h2>用户登录</h2>
+    <form method="post" action="/login">
+    <div class="form-group">
+        <select name ="role">
+            <option value="1"> 客户</option>
+            <option value="2"> 管理员</option>
+        </select>
+    </div>
+
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">手机号</label>    <!-- for 是干嘛的？ -->
+    <input type="text" class="form-control" placeholder="手机号" name="mobile">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">密码</label>
+    <input type="password" class="form-control" placeholder="密码" name="pwd">
+  </div>
+    <button type="submit" class="btn btn-default">登录</button>
     <span style="color:red;">{{ error }}</span>
+</form>
+</div>
+
+
+<script src="/static/jquery=4.0.0.min.js"></script>
+<script src="/static/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
 
 <!--    <input name="mobile" placeholder="手机号"/>-->
 
-</form>
+
 </body>
 </html>

@@ -1,6 +1,9 @@
 import dbutils.pooled_db
 import pymysql
 from flask import Blueprint, render_template, request,redirect
+
+from utils import db
+
 """
 conn = pymysql.connect(
     host="localhost",
@@ -36,18 +39,21 @@ def login():
     if request.method == 'GET':
         return render_template("login.html")
 
+#wtforms 干嘛的
+
     role = request.form.get('role')
     mobile = request.form.get('mobile')
     password = request.form.get('pwd')
     print(role,mobile,password)
 
 #connect to MYSQL to check if the user is in the database
-    conn = POOL.connection()
-    cursor = conn.cursor()
-    cursor.execute("select * from user_database where role=%s and mobile=%s and password=%s",(role,mobile,password))
-    user = cursor.fetchone()
-    cursor.close()
-    conn.close()
+    result = db.fetch_one("select * from user_database where role=%s and mobile=%s and password=%s", (role, mobile, password))
+
+
+
+
+    user = result
+
     if user:
         return redirect("/order/list") #跳转其他网址
     else:
