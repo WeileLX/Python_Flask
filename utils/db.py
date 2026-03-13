@@ -25,3 +25,21 @@ def fetch_one(sql,params):
     cursor.close()
     conn.close()
     return user
+
+def fetch_all(sql,params):
+    conn = POOL.connection()
+    cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+    cursor.execute(sql,params)
+    user = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return user
+
+def insert(sql,params):
+    conn = POOL.connection()
+    cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+    cursor.execute(sql,params)
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return cursor.lastrowid # 用来拿到 刚刚 INSERT 进去的那条记录的自增主键 ID。 update等其他无效，可能返回0.

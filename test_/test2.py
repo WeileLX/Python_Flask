@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 def get_user_dict():
     intfo_dict = {}
-    with open("test.txt",mode="r",encoding="utf-8") as f:
+    with open("../test.txt", mode="r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             token, name = line.split(",")
